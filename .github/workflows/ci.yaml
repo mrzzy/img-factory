@@ -1,0 +1,28 @@
+#
+# bento-box
+# continous integration (ci) pipeline
+#
+
+name: "CI Pipeline"
+on: push
+env:
+  DOCKER_BUILDKIT: 1
+jobs:
+  # build & push docker images
+  build-push-imgs:
+    needs: check-protos
+    runs-on: ubuntu-20.04
+    name: "Build & Test bentobox-sim"
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Build Docker Images"
+        steps: |
+          make build
+      - name: "Authenticate with Registries"
+        env:
+          HARBOR_TOKEN: ${{secrets.HARBOR_TOKEN}}
+        steps:
+          echo $HARBOR_TOKEN | docker login core.harbor.mrzzy.co --username mrzzy --password-stdin
+      - name: "Push Docker Images"
+        steps: |
+          make push

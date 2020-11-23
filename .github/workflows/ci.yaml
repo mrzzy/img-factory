@@ -19,9 +19,10 @@ jobs:
           make build
       - name: "Authenticate with Registries"
         env:
+          HARBOR_USER: ${{secrets.HARBOR_USER}}
           HARBOR_TOKEN: ${{secrets.HARBOR_TOKEN}}
         run: |
-          echo $HARBOR_TOKEN | docker login core.harbor.mrzzy.co --username mrzzy --password-stdin
+          echo $HARBOR_TOKEN | docker login core.harbor.mrzzy.co --username $HARBOR_USER --password-stdin
       - name: "Push Docker Images"
         run: |
           make push

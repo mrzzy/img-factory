@@ -18,9 +18,10 @@ RUN pip install --upgrade \
     python-language-server[all] jupyterlab==2.2.9 kaggle \
     dask seaborn pandas-profiling[notebook] hyperas hyperopt
 # install plugins
-RUN jupyter labextension install @krassowski/jupyterlab-lsp \
-    && jupyter labextension install @axlair/jupyterlab_vim  \
-    && jupyter labextension install @jupyterlab/git
+RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
+    && jupyter labextension install @axlair/jupyterlab_vim --no-build  \
+    && jupyter labextension install @jupyterlab/git --no-build \
+    && jupyter lab build
 
 # revert user to jovyan
 USER jovyan

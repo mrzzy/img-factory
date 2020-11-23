@@ -23,7 +23,7 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp \
     && jupyter labextension install @jupyterlab/git
 
 # revert user to jovyan
-USER joyvan
+USER jovyan
 
 # run jupyterlab instead of jupyter notebook
 CMD ["sh","-c", "jupyter lab --notebook-dir=/home/${NB_USER} --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]

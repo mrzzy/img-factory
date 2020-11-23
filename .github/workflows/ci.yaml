@@ -11,7 +11,7 @@ jobs:
   # build & push docker images
   build-push-imgs:
     runs-on: ubuntu-20.04
-    name: "Build & Test bentobox-sim"
+    name: "Build & Push Docker Images"
     steps:
       - uses: actions/checkout@v2
       - name: "Build Docker Images"

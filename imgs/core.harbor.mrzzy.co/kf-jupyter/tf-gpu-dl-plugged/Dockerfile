@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y \
 RUN pip install python-language-server[all] \
     dask seaborn pandas-profiling[notebook] hyperas hyperopt kaggle
 # install plugins
-RUN jupyter labextension install @krassowski/jupyterlab-lsp \
+RUN (jupyter labextension install @krassowski/jupyterlab-lsp \
     && jupyter labextension install @axlair/jupyterlab_vim  \
-    && jupyter labextension install @jupyterlab/git
+    && jupyter labextension install @jupyterlab/git) || cat /tmp/jupyterlab-debug-*.log 1>&2
 
 # revert user to jovyan
 USER joyvan

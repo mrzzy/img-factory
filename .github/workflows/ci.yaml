@@ -16,13 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "Build Docker Images"
-        steps: |
+        run: |
           make build
       - name: "Authenticate with Registries"
         env:
           HARBOR_TOKEN: ${{secrets.HARBOR_TOKEN}}
-        steps:
+        run: |
           echo $HARBOR_TOKEN | docker login core.harbor.mrzzy.co --username mrzzy --password-stdin
       - name: "Push Docker Images"
-        steps: |
+        run: |
           make push

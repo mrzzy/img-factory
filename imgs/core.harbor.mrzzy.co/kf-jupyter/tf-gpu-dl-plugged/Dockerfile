@@ -15,8 +15,10 @@ RUN apt-get update && apt-get install -y \
 # install & upgrade python packages
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
-    python-language-server[all] jupyterlab==2.2.9 kaggle \
+    python-language-server[all]  \
+    jupyterlab==2.2.9 jupyter-lsp jupyterlab-git kaggle \
     dask seaborn pandas-profiling[notebook] hyperas hyperopt
+
 # install plugins
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @axlair/jupyterlab_vim --no-build  \

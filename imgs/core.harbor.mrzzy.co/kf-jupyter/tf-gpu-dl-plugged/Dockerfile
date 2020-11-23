@@ -12,14 +12,15 @@ USER root
 RUN apt-get update && apt-get install -y \
     nodejs htop neovim \
     && rm -rf /var/lib/apt/lists/*
-# install python packages
-RUN pip install python-language-server[all] \
-    dask seaborn pandas-profiling[notebook] hyperas hyperopt kaggle \
-    jupyter-lsp
+# install & upgrade python packages
+# jupyterlab has to be upgraded as its too old for jupyterlab-lsp
+RUN pip install --upgrade \
+    python-language-server[all] jupyterlab==2.2.9 kaggle \
+    dask seaborn pandas-profiling[notebook] hyperas hyperopt
 # install plugins
-RUN (jupyter labextension install @krassowski/jupyterlab-lsp \
+RUN jupyter labextension install @krassowski/jupyterlab-lsp \
     && jupyter labextension install @axlair/jupyterlab_vim  \
-    && jupyter labextension install @jupyterlab/git) || cat /tmp/jupyterlab-debug-*.log 1>&2
+    && jupyter labextension install @jupyterlab/git
 
 # revert user to jovyan
 USER joyvan

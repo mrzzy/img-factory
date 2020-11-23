@@ -10,14 +10,14 @@ USER root
 
 # install packages
 RUN apt-get update && apt-get install -y \
-    nodejs htop neovim
+    nodejs htop neovim \
     && rm -rf /var/lib/apt/lists/*
 # install python packages
 RUN pip install python-language-server[all] \
     dask seaborn pandas-profiling[notebook] hyperas hyperopt kaggle
 # install plugins
-RUN jupyter labextension install @krassowski/jupyterlab-lsp
-    && jupyter labextension install @axlair/jupyterlab_vim
+RUN jupyter labextension install @krassowski/jupyterlab-lsp \
+    && jupyter labextension install @axlair/jupyterlab_vim  \
     && jupyter labextension install @jupyterlab/git
 
 # revert user to jovyan

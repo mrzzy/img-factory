@@ -10,7 +10,6 @@ env:
 jobs:
   # build & push docker images
   build-push-imgs:
-    needs: check-protos
     runs-on: ubuntu-20.04
     name: "Build & Test bentobox-sim"
     steps:

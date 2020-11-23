@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 # install python packages
 RUN pip install python-language-server[all] \
-    dask seaborn pandas-profiling[notebook] hyperas hyperopt kaggle
+    dask seaborn pandas-profiling[notebook] hyperas hyperopt kaggle \
+    jupyter-lsp
 # install plugins
 RUN (jupyter labextension install @krassowski/jupyterlab-lsp \
     && jupyter labextension install @axlair/jupyterlab_vim  \

@@ -3,7 +3,7 @@
 # Extends Kubeflow's tensorflow 2.1 gpu images with Jupyterlab plugins
 #
 
-FROM gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-cpu:1.0.0
+FROM gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-gpu:1.0.0
 
 # escalate permissions to root to install
 USER root

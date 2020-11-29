@@ -23,6 +23,10 @@ RUN pip install --upgrade \
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @axlair/jupyterlab_vim --no-build  \
     && jupyter labextension install @jupyterlab/git --no-build \
+    && jupyter labextension install @jupyterlab/toc --no-build \
+    && jupyter labextension install @jupyterlab/server-proxy --no-build \
+    && jupyter labextension install dask-labextension --no-build \
+    && jupyter labextension install jupyterlab-s3-browser --no-build \
     && jupyter lab build
 
 # revert user to jovyan

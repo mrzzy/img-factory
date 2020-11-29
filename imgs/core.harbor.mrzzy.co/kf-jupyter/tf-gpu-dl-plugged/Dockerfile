@@ -8,6 +8,9 @@ FROM gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-gpu:1.0.0
 # escalate permissions to root to install
 USER root
 
+# change default shell to bash
+ENV SHELL=/bin/bash
+
 # install packages
 RUN apt-get update && apt-get install -y \
     nodejs htop neovim \

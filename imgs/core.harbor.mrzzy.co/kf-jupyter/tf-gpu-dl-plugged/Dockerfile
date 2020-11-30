@@ -19,10 +19,11 @@ RUN apt-get update && apt-get install -y \
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
     python-language-server[all]  \
-    jupyterlab==2.2.9 jupyter-lsp jupyterlab-git kaggle \
-    dask seaborn pandas-profiling[notebook] hyperas hyperopt
+    jupyterlab==2.2.9 jupyter-lsp jupyterlab-git 
+    pip install jupyter-server-proxy dask_labextension jupyterlab-s3-browser
+    kaggle dask seaborn pandas-profiling[notebook] hyperas hyperopt
 
-# install plugins
+# install plugins/extensions
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @axlair/jupyterlab_vim --no-build  \
     && jupyter labextension install @jupyterlab/git --no-build \
@@ -31,6 +32,11 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install dask-labextension --no-build \
     && jupyter labextension install jupyterlab-s3-browser --no-build \
     && jupyter lab build
+# enable server extensions
+RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
+    && jupyter serverextension enable --py jupyterlab_s3_browser
+    && jupyter serverextension enable dask_labextension 
+
 
 # revert user to jovyan
 USER jovyan

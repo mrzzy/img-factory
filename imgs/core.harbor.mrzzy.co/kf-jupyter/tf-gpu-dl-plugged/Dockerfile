@@ -13,7 +13,7 @@ ENV SHELL=/bin/bash
 
 # install packages
 RUN apt-get update && apt-get install -y \
-    nodejs htop neovim \
+    nodejs htop neovim ranger \
     && rm -rf /var/lib/apt/lists/*
 # install & upgrade python packages
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp

@@ -14,6 +14,7 @@ ENV SHELL=/bin/bash
 # install packages
 RUN apt-get update && apt-get install -y \
     nodejs htop neovim ranger \
+    libgl1-mesa-glx ffmpeg libsm6 libxext6 \
     && rm -rf /var/lib/apt/lists/*
 # install & upgrade python packages
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
@@ -34,7 +35,7 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
 # enable server extensions
 RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
     && jupyter serverextension enable --py jupyterlab_s3_browser \
-    && jupyter serverextension enable dask_labextension 
+    && jupyter serverextension enable dask_labextension
 
 
 # revert user to jovyan

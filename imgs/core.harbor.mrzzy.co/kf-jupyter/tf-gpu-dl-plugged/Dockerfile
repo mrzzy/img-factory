@@ -10,6 +10,9 @@ USER root
 
 # change default shell to bash
 ENV SHELL=/bin/bash
+# add ~/.local/bin to pat
+# gives access to executables installed by 'pip install --user'
+ENV PATH=$HOME/.local/bin:$PATH
 
 # install packages
 RUN apt-get update && apt-get install -y \

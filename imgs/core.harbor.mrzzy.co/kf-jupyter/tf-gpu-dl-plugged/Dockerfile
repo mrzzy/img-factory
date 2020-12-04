@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \
     dask_labextension jupyterlab-s3-browser python-language-server[all]  \
-    kaggle dask seaborn pandas-profiling[notebook] hyperas hyperopt
+    jupyterlab-tensorboard kaggle dask seaborn pandas-profiling[notebook] \
+    hyperas hyperopt ray[tune]
 
 # install plugins/extensions
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
@@ -34,6 +35,7 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @jupyterlab/server-proxy --no-build \
     && jupyter labextension install dask-labextension --no-build \
     && jupyter labextension install jupyterlab-s3-browser --no-build \
+    && jupyter labextension install jupyterlab_tensorboard --no-build \
     && jupyter lab build
 # enable server extensions
 RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \

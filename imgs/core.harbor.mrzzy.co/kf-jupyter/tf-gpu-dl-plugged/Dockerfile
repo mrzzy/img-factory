@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \
     dask_labextension jupyterlab-s3-browser python-language-server[all]  \
-    jupyterlab-tensorboard kaggle dask seaborn pandas-profiling[notebook] \
+    jupyter-tensorboard kaggle dask seaborn pandas-profiling[notebook] \
     hyperas hyperopt ray[tune]
 
 # install plugins/extensions

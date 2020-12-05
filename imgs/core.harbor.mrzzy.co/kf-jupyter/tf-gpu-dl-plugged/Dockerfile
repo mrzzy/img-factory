@@ -40,7 +40,8 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
 # enable server extensions
 RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
     && jupyter serverextension enable --py jupyterlab_s3_browser \
-    && jupyter serverextension enable dask_labextension
+    && jupyter serverextension enable dask_labextension \
+    && jupyter serverextension enable jupyterlab_tensorboard
 
 
 # revert user to jovyan

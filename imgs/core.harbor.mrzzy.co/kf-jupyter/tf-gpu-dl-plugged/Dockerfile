@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx ffmpeg libsm6 libxext6 \
     && rm -rf /var/lib/apt/lists/*
 # install & upgrade python packages
+# stop enum34 package from overshadowing python's builtin enum
+RUN pip uninstall -y enum34
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \

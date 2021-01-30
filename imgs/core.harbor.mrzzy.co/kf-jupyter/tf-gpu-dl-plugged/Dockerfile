@@ -28,7 +28,7 @@ RUN pip install --upgrade \
     dask_labextension jupyterlab-s3-browser python-language-server[all]  \
     jupyter-tensorboard kaggle dask pandas-profiling[notebook] hyperas \
     hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \
-    gensim nltk emot spacy nlpre codespell kubeflow-kale nb_black
+    gensim nltk emot spacy nlpre codespell nb_black mlflow
 
 # install plugins/extensions
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
@@ -39,7 +39,6 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install dask-labextension --no-build \
     && jupyter labextension install jupyterlab-s3-browser --no-build \
     && jupyter labextension install jupyterlab_tensorboard --no-build \
-    && jupyter labextension install kubeflow-kale-labextension --no-build \
     && jupyter lab build
 # enable server extensions
 RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \

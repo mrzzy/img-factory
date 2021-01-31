@@ -25,9 +25,7 @@ RUN pip uninstall -y enum34
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \
-    # pin jupyterlab_server as workaround for https://github.com/krassowski/jupyterlab-lsp/issues/461
-    jupyterlab_server==2.0.0 \
-    dask_labextension jupyterlab-s3-browser python-language-server[all]  \
+    dask_labextension jupyterlab-s3-browser jedi-language-server \
     jupyter-tensorboard kaggle dask pandas-profiling[notebook] hyperas \
     hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \
     gensim nltk emot spacy nlpre codespell nb_black mlflow s3cmd
@@ -45,8 +43,7 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
 # enable server extensions
 RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
     && jupyter serverextension enable --py jupyterlab_s3_browser \
-    && jupyter serverextension enable dask_labextension \
-    && jupyter serverextension enable jupyterlab_tensorboard
+    && jupyter serverextension enable dask_labextension
 
 
 # revert user to jovyan

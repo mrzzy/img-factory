@@ -24,11 +24,13 @@ RUN apt-get update && apt-get install -y \
 RUN pip uninstall -y enum34
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
-    jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \
-    dask_labextension jupyterlab-s3-browser jedi-language-server \
-    jupyter-tensorboard kaggle dask pandas-profiling[notebook] hyperas \
-    hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \
-    gensim nltk spacy nlpre codespell nb_black mlflow s3cmd textblob pyspellchecker \
+    jupyterlab==2.2.9 jupyter-lsp==0.9 jupyterlab-git==0.23 jupyter-server-proxy==1.5  \
+    dask_labextension==3.0 jupyterlab-s3-browser==0.7 jupyter-client==6.1 \
+    jupyter-tensorboard==0.2 python-language-server[all]==0.36 \
+    pandas-profiling[notebook]==2.9 nb_black codespell  \
+    mlflow kaggle dask hyperas hyperopt ray[tune] seaborn matplotlib \
+    scikit-learn imbalanced-learn \
+    gensim nltk spacy fasttext s3cmd textblob pyspellchecker \
     # install emot via git as v2.2 not on pypi
     git+https://github.com/NeelShah18/emot.git@master
 

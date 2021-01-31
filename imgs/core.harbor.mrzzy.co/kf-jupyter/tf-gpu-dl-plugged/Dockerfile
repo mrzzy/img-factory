@@ -30,6 +30,9 @@ RUN pip install --upgrade \
     hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \
     gensim nltk emot spacy nlpre codespell nb_black mlflow s3cmd textblob pyspellchecker
 
+# install textblob/nltk corpra
+RUN python -m textblob.download_corpora
+
 # install plugins/extensions
 RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @axlair/jupyterlab_vim --no-build  \

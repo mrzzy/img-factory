@@ -28,7 +28,9 @@ RUN pip install --upgrade \
     dask_labextension jupyterlab-s3-browser jedi-language-server \
     jupyter-tensorboard kaggle dask pandas-profiling[notebook] hyperas \
     hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \
-    gensim nltk emot spacy nlpre codespell nb_black mlflow s3cmd textblob pyspellchecker
+    gensim nltk spacy nlpre codespell nb_black mlflow s3cmd textblob pyspellchecker \
+    # install emot via git as v2.2 not on pypi
+    git+https://github.com/NeelShah18/emot.git@v2.2
 
 # install textblob/nltk corpra
 RUN python -m textblob.download_corpora

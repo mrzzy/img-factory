@@ -25,6 +25,8 @@ RUN pip uninstall -y enum34
 # jupyterlab has to be upgraded as its too old for jupyterlab-lsp
 RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp jupyterlab-git jupyter-server-proxy  \
+    # pin jupyterlab_server as workaround for https://github.com/krassowski/jupyterlab-lsp/issues/461
+    jupyterlab_server==2.0.0 \
     dask_labextension jupyterlab-s3-browser python-language-server[all]  \
     jupyter-tensorboard kaggle dask pandas-profiling[notebook] hyperas \
     hyperopt ray[tune] fasttext seaborn matplotlib scikit-learn imbalanced-learn \

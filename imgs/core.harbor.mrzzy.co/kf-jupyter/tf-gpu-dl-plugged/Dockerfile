@@ -27,7 +27,7 @@ RUN pip install --upgrade \
     jupyterlab==2.2.9 jupyter-lsp==0.9.* jupyterlab-git==0.23.* jupyter-server-proxy==1.5.*  \
     dask_labextension==3.0.* jupyterlab-s3-browser==0.7.* jupyter-client==6.1.* \
     jupyter-tensorboard==0.2.* python-language-server[all]==0.36.* \
-    pandas-profiling[notebook]==2.9.* nb_black codespell  \
+    pandas-profiling[notebook]==2.9.* nb_black codespell minio \
     mlflow kaggle dask hyperas hyperopt ray[tune] seaborn matplotlib \
     scikit-learn imbalanced-learn \
     gensim nltk spacy fasttext s3cmd textblob pyspellchecker \
@@ -43,7 +43,7 @@ RUN jupyter labextension install @krassowski/jupyterlab-lsp --no-build \
     && jupyter labextension install @jupyterlab/git --no-build \
     && jupyter labextension install @jupyterlab/toc --no-build \
     && jupyter labextension install @jupyterlab/server-proxy --no-build \
-    && jupyter labextension install dask-labextension --no-build \
+    && jupyter labextension install dask-labextension@3.0.0 --no-build \
     && jupyter labextension install jupyterlab-s3-browser --no-build \
     && jupyter labextension install jupyterlab_tensorboard --no-build \
     && jupyter lab build

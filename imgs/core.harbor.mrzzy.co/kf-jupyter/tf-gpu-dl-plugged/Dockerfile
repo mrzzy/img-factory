@@ -30,7 +30,7 @@ RUN pip install --upgrade \
     pandas-profiling[notebook]==2.9.* nb_black codespell minio \
     mlflow kaggle dask hyperas hyperopt ray[tune] seaborn matplotlib \
     scikit-learn imbalanced-learn \
-    gensim nltk spacy fasttext s3cmd textblob pyspellchecker \
+    gensim nltk spacy fasttext s3cmd textblob pyspellchecker Unidecode \
     # install emot via git as v2.2 not on pypi
     git+https://github.com/NeelShah18/emot.git@master
 

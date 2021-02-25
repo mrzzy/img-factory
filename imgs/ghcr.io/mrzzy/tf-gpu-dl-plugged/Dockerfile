@@ -52,11 +52,11 @@ RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
     && jupyter serverextension enable --py jupyterlab_s3_browser \
     && jupyter serverextension enable dask_labextension
 
+# fix file permissions
+RUN chown -R jovyan /home/jovyan/
 
 # revert user to jovyan
 USER jovyan
-# fix file permissions
-RUN chown -R jovyan /home/jovyan/
 
 # run jupyterlab instead of jupyter notebook
 CMD ["sh","-c", "jupyter lab --notebook-dir=/home/${NB_USER} --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]

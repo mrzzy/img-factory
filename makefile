@@ -31,6 +31,6 @@ build/%: $(IMG_DIR)/%/Dockerfile $(IMG_DIR)/%/TAG
 
 push: $(foreach container,$(CONTAINERS),push/$(container))
 
-# push built
-push/%:
-	docker push $(subst push/,,$@)
+# push built image to their tagged container registries
+push/%: $(IMG_DIR)/%/TAG
+	docker push $(subst push/,,$@):$(shell cat $(dir $<)/TAG)

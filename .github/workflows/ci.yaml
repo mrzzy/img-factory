@@ -17,12 +17,11 @@ jobs:
       - name: "Build Docker Images"
         run: |
           make build
-      - name: "Authenticate with Registries"
+      - name: "Authenticate with Container Registry"
         env:
-          HARBOR_USER: ${{secrets.HARBOR_USER}}
-          HARBOR_TOKEN: ${{secrets.HARBOR_TOKEN}}
+          DOCKER_TOKEN: ${{secrets.GHCR_TOKEN}}
         run: |
-          echo $HARBOR_TOKEN | docker login core.harbor.mrzzy.co --username $HARBOR_USER --password-stdin
+          echo $DOCKER_TOKEN | docker login ghcr.io --username mrzzy --password-stdin
       - name: "Push Docker Images"
         run: |
           make push

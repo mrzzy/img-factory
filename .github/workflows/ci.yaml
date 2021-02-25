@@ -19,10 +19,9 @@ jobs:
           make build
       - name: "Authenticate with Container Registry"
         env:
-          DOCKER_USER: ${{secrets.GHCR_USER}}
           DOCKER_TOKEN: ${{secrets.GHCR_TOKEN}}
         run: |
-          echo $DOCKER_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
+          echo $DOCKER_TOKEN | docker login ghcr.io --username mrzzy --password-stdin
       - name: "Push Docker Images"
         run: |
           make push

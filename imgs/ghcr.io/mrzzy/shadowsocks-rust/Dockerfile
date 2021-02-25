@@ -30,6 +30,6 @@ USER shadowsocks
 # copy shadowsocks binaries
 COPY --from=build /usr/bin/ssserver /usr/bin/ssserver
 # copy default configuration file
-COPY config.json config.json
+COPY config.json /etc/shadowsocks-rust/config.json
 # run shadowsocks
-CMD [ "/usr/bin/ssserver", "--config", "config.json" ]
+CMD [ "/usr/bin/ssserver", "--config", "/etc/shadowsocks-rust/config.json" ]

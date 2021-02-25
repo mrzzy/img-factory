@@ -25,9 +25,11 @@ RUN SS_RELEASE_JSON=$(wget --quiet -O- "https://api.github.com/repos/shadowsocks
     && tar -C /usr/bin/ -xf $SS_ARCHIVE
 
 FROM base as release
+# drop root permissions when running shadowsocks
+USER shadowsocks
 # copy shadowsocks binaries
 COPY --from=build /usr/bin/ssserver /usr/bin/ssserver
 # copy default configuration file
-COPY config.json /etc/shadowsocks-rust/config.json
+COPY config.json config.json
 # run shadowsocks
-CMD [ "/usr/bin/ssserver", "--config", "/etc/shadowsocks-rust/config.json" ]
+CMD [ "/usr/bin/ssserver", "--config", "config.json" ]

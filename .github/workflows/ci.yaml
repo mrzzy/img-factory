@@ -9,19 +9,26 @@ env:
   DOCKER_BUILDKIT: 1
 jobs:
   # build & push docker images
-  build-push-imgs:
+  build-push-img:
     runs-on: ubuntu-20.04
-    name: "Build & Push Docker Images"
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - ghcr.io/mrzzy/shadowsocks-rust
+          - ghcr.io/mrzzy/tf-gpu-dl-plugged
+          - ghcr.io/mrzzy/wireguard-boringtun
+    name: "Build & Push Image: ${{ matrix.image }}"
     steps:
       - uses: actions/checkout@v2
-      - name: "Build Docker Images"
+      - name: "Build ${{ matrix.image }} Docker Image"
         run: |
-          make build
+          make build/${{ matrix.image }}
       - name: "Authenticate with Container Registry"
         env:
-          DOCKER_TOKEN: ${{secrets.GHCR_TOKEN}}
+          DOCKER_TOKEN: ${{ secrets.GHCR_TOKEN }}
         run: |
           echo $DOCKER_TOKEN | docker login ghcr.io --username mrzzy --password-stdin
-      - name: "Push Docker Images"
+      - name: "Push ${{ matrix.image }} Image to Registry"
         run: |
-          make push
+          make push/${{ matrix.image }}

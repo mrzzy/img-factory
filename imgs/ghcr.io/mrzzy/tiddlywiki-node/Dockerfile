@@ -17,13 +17,10 @@ RUN npm install -g tiddlywiki@5.1.23
 
 # setup directory for wiki
 ENV WIKI_DIR=/wiki
-RUN mkdir ${WIKI_DIR} && chown tiddly ${WIKI_DIR}
-USER tiddly
+RUN mkdir ${WIKI_DIR}
 
 # copy entrypoint script
 COPY entrypoint.sh .
 
-
 # run tiddlywiki on container start
-ENTRYPOINT ["ash"]
-CMD ["entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]

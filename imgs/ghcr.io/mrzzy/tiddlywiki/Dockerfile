@@ -1,18 +1,6 @@
 #
 # TiddlyWiki - TiddlyWiki NodeJS
 #
-# environment variables:
-# TIDDLYWIKI_AUTH_HEADER - if set, configures the http header that tiddly uses to
-#   obtain the requester's username.
-# anon-username
-# TIDDLYWIKI_READERS - comma separated list of usernames allowed to read from this wiki.
-# TIDDLYWIKI_WRITERS - comma separated list of usernames allowed to read from this wiki.
-# TIDDLYWIKI_USERNAME & TIDDLYWIKI_PASSWORD - if set, configures tiddlywiki to
-#   use basic http authentication
-# TIDDLYWIKI_DEBUG - whether to configure tiddlywiki to output debugging logs
-#
-# persistent volume / storage
-# /wiki - persist to storage in order persist wiki contents accross container restarts
 
 
 FROM node:14.17-alpine3.11

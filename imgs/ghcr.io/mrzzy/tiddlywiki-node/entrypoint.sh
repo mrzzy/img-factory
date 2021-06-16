@@ -5,8 +5,8 @@ set -e
 # entrypoint script
 #
 
-# init wiki directory on first startup (empty wiki directory)
-if [ -z "$(ls -A ${WIKI_DIR})" ]
+# init wiki directory on first startup if empty
+if [ ! -f ${WIKI_DIR}/tiddlywiki.info ]
 then
     echo "[INFO] $(date -Iseconds): Initializing wiki directory on first startup"
     tiddlywiki ${WIKI_DIR} --init server

@@ -5,6 +5,14 @@ set -e
 # entrypoint script
 #
 
+# init wiki directory on first startup (empty wiki directory)
+if [ -z "$(ls -A ${WIKI_DIR})" ]
+then
+    echo "[INFO] $(date -Iseconds): Initializing wiki directory on first startup"
+    tiddlywiki ${WIKI_DIR} --init server
+fi
+
+# parse auth config from environment variables
 if [ -n "$TIDDLYWIKI_AUTH_HEADER" ]
 then
     echo "[INFO] $(date -Iseconds): Starting tiddlywiki with header authentication"

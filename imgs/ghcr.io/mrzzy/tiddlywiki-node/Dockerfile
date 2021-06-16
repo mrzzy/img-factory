@@ -15,11 +15,10 @@ RUN addgroup --gid 12820 tiddly \
 # install tiddlywiki with npm
 RUN npm install -g tiddlywiki@5.1.23
 
-# create a new wiki to serve backed by a volume
+# setup directory for wiki
 ENV WIKI_DIR=/wiki
 RUN mkdir ${WIKI_DIR} && chown tiddly ${WIKI_DIR}
 USER tiddly
-RUN tiddlywiki ${WIKI_DIR} --init server
 
 # copy entrypoint script
 COPY entrypoint.sh .

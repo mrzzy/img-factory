@@ -1,4 +1,4 @@
-# tiddlywiki
+# tiddlywiki-node
 Tiddlywiki NodeJS container listening on port `8080`:
 ```
 docker run -it --init \
@@ -6,7 +6,7 @@ docker run -it --init \
     -e TIDDLYWIKI_USERNAME=mrzzy \
     -e TIDDLYWIKI_PASSWORD=changethis \
     -v /path/to/your/wiki:/wiki \
-    ghcr.io/mrzzy/tiddlywiki:5.1.23
+    ghcr.io/mrzzy/tiddlywiki-node:5.1.23
 ```
 
 ## Volume / Storage

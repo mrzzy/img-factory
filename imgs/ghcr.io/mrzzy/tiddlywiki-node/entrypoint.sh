@@ -2,7 +2,7 @@
 set -e
 #
 # TiddlyWiki - TiddlyWiki NodeJS
-# Entrypoint Script
+# entrypoint script
 #
 
 if [ -n "$TIDDLYWIKI_AUTH_HEADER" ]

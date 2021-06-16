@@ -36,12 +36,6 @@ chown tiddly ${WIKI_DIR}
 if [ -z "$@" ]
 then 
     # drop root permissions by switch to tiddly user
-    exec su -m tiddly -c "tiddlywiki ${WIKI_DIR} --listen
-        host=0.0.0.0 
-        port=8080
-        gzip=yes
-        debug-level=$TIDDLYWIKI_DEBUG
-        $AUTH_ARGS"
-else
+    exec su -m tiddly -c "tiddlywiki ${WIKI_DIR} --listen host=0.0.0.0 port=8080 gzip=yes debug-level=$TIDDLYWIKI_DEBUG $AUTH_ARGS" else
     exec $@
 fi

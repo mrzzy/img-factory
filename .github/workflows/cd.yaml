@@ -1,9 +1,9 @@
 #
 # bento-box
-# continous integration (ci) pipeline
+# continous deployment (cd) pipeline
 #
 
-name: "CI Pipeline"
+name: "CD Pipeline"
 on: push
 env:
   DOCKER_BUILDKIT: 1

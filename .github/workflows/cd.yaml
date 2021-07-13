@@ -16,7 +16,6 @@ jobs:
       matrix:
         image:
           - ghcr.io/mrzzy/shadowsocks-rust
-          - ghcr.io/mrzzy/tf-gpu-dl-plugged
           - ghcr.io/mrzzy/wireguard-boringtun
           - ghcr.io/mrzzy/tiddlywiki-node
     name: "Build & Push Image: ${{ matrix.image }}"

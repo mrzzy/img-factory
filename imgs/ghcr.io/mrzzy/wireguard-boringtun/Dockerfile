@@ -8,7 +8,7 @@ FROM rust:1.52-alpine3.13 AS base
 
 # build & install boringtun
 FROM base as build
-RUN apk add --no-cache musl-dev wireguard-tools
+RUN apk add --no-cache musl-dev wireguard-tools=1.0.20200827-r1
 RUN cargo install boringtun
 
 # release image
@@ -23,7 +23,7 @@ RUN addgroup --gid 12820 wireguard \
 WORKDIR /home/wg
 
 # install wireguard tools
-RUN apk add --no-cache wireguard-tools
+RUN apk add --no-cache wireguard-tools=1.0.20200827-r1
 # copy built boringtun binary
 COPY --from=build /usr/local/cargo/bin/boringtun /usr/local/bin/boringtun
 

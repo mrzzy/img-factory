@@ -16,11 +16,8 @@ WORKDIR /home/shadowsocks
 # Download prebuilt shadowsocks-rust binaries
 FROM base AS build
 RUN apk add --no-cache --virtual .build-deps jq git curl
-RUN SS_RELEASE_JSON=$(wget --quiet -O- "https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/v1.11.1" \
-        | jq -r '.assets[] | select(.name | test("x86_64-unknown-linux-musl\\.tar\\.xz$"))') \
-    && SS_ARCHIVE=$(echo $SS_RELEASE_JSON | jq -r '.name') \
-    && wget $(echo $SS_RELEASE_JSON | jq -r ".browser_download_url") -O $SS_ARCHIVE \
-    # for some reason, the tar archive extraction fails if done immdiately after wget
+ENV SS_VERSION=v1.11.1 SS_ARCHIVE=shadowsocks.tar.xz
+RUN wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/${SS_VERSION}/shadowsocks-${SS_VERSION}.aarch64-unknown-linux-musl.tar.xz -O $SS_ARCHIVE \
     && echo $SS_ARCHIVE \
     && tar -C /usr/bin/ -xf $SS_ARCHIVE
 
